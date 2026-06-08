@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  alignment_orchestrator:
+    build: .
+    volumes:
+      - ./src:/app/src
+      - ./data:/app/data
+      - ./logs:/app/logs
+    environment:
+      - CUDA_VISIBLE_DEVICES=0,1,2,3
+      - LOG_LEVEL=DEBUG
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    networks:
+      - enterprise_network
+
+networks:
+  enterprise_network:
+    driver: bridge

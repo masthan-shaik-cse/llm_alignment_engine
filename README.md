@@ -1,21 +1,20 @@
 # Enterprise LLM Alignment Engine
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![Alignment: Post-RLHF](https://img.shields.io/badge/Alignment-KTO_%7C_Constitutional-purple.svg)](#)
-
 A state-of-the-art framework for aligning Large Language Models to human preferences and safety principles. This repository transcends traditional Proximal Policy Optimization (PPO), introducing Kahneman-Tversky Optimization (KTO), Constitutional AI supervision, and Latent Space Red-Teaming for enterprise-grade security.
 
-## Core Architectural Modules
+## Enterprise Architecture (10-Folder Layout)
 
-### 1. Kahneman-Tversky Optimizer (KTO) (`src/llm_alignment_engine/core/kto_optimizer.py`)
-A highly mathematically efficient alternative to standard RLHF and DPO. Leveraging prospect theory, the KTO module calculates asymmetric value functions for gains and losses in token likelihoods, maximizing the utility of preference data without requiring a paired reward model.
-
-### 2. Constitutional AI Supervisor (`src/llm_alignment_engine/core/constitutional_supervisor.py`)
-An automated interception node that evaluates model generations against a strict "Safety Constitution." Outputs are systematically critiqued and evaluated for alignment, objectively rejecting any prompt injections, sycophantic tendencies, or attempts to bypass system overrides.
-
-### 3. Latent Space Red-Teaming (`src/llm_alignment_engine/filters/latent_red_team.py`)
-Standard alignment frameworks utilize token-level filtering, which is highly vulnerable to obfuscated attacks. This module injects adversarial mathematical perturbations (noise) directly into the embedding layers during generation, empirically proving that the model's safety guardrails remain robust even when the latent space is under attack.
+To support massive High-Performance Computing workloads, this repository is structured into 10 dedicated domains:
+1. `config/`: Configuration files for distributed KTO topologies.
+2. `tests/`: Automated unit and integration testing suite.
+3. `scripts/`: Shell scripts for Slurm cluster orchestration.
+4. `docs/`: Academic whitepapers and generated Sphinx documentation.
+5. `models/`: Storage for checkpointed, aligned LLM weights.
+6. `data/`: Preference datasets and constitutional XML definitions.
+7. `logs/`: Real-time alignment telemetry and diagnostics.
+8. `notebooks/`: Exploratory Data Analysis (EDA) on alignment vectors.
+9. `docker/`: Build contexts for the containerized HPC deployments.
+10. `src/`: The core proprietary alignment engine codebase.
 
 ## System Pipeline Architecture
 
@@ -34,27 +33,24 @@ graph TD
     F -->|Strictly Aligned| H[Final Secure Output]
 ```
 
-## Build and Deployment
+## The 10-Section Alignment Orchestrator (`main.py`)
 
-The package adheres to strict enterprise Python standards.
-
-### Installation
+The primary entrypoint is a massive command-line tool that orchestrates the entire alignment lifecycle across the 10-folder architecture. Execute the entire pipeline via:
 ```bash
-python -m venv venv
-source venv/bin/activate
-pip install -e .
-```
-
-### End-to-End Orchestration
-The primary entrypoint facilitates modular execution of the alignment lifecycle:
-```bash
-python src/llm_alignment_engine/main.py --run_all
+python src/llm_alignment_engine/main.py --run_all_enterprise_pipelines
 ```
 
 **Individual Execution Modules:**
-- `--run_kto_alignment`: Execute the Kahneman-Tversky tuning phase.
-- `--run_constitutional_critique`: Launch the AI evaluation supervisor.
-- `--execute_latent_red_team`: Perform adversarial embedding attacks.
+1. `--initiate_kto_cluster`: Initialize the distributed Kahneman-Tversky tuning environment.
+2. `--launch_constitutional_supervisor`: Launch the overarching AI evaluation supervisor node.
+3. `--execute_latent_red_team`: Perform adversarial embedding attacks to test robustness.
+4. `--audit_preference_dataset`: Audit the data directory for statistical preference bias.
+5. `--run_reward_model_diagnostics`: Verify reward bounds prior to alignment.
+6. `--simulate_jailbreak_attack`: Stress-test the Constitutional Supervisor with multi-turn prompt injections.
+7. `--compile_alignment_report`: Aggregate telemetry from the `logs/` directory.
+8. `--deploy_safety_guardrails`: Package the final inference guardrails for production.
+9. `--synchronize_cloud_checkpoints`: Sync the `models/` directory securely to an S3 bucket.
+10. `--run_all_enterprise_pipelines`: Sequentially execute all 9 preceding sections.
 
 ## Alignment Philosophy
-Robust AI safety cannot be achieved by merely penalizing bad tokens. By integrating prospect-theory optimization with automated constitutional oversight and latent-space stress testing, this engine guarantees provable alignment across the entire inference pipeline.
+Robust AI safety cannot be achieved by merely penalizing bad tokens. By integrating prospect-theory optimization with automated constitutional oversight and latent-space stress testing within a massive, 10-folder Dockerized ecosystem, this engine guarantees provable alignment across the entire inference pipeline.
